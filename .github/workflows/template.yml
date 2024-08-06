@@ -1,0 +1,118 @@
+name: Batch Builder Template
+
+on:
+  workflow_call:
+    inputs:
+      batch_number:
+        description: The batch number for the build batch script
+        required: true
+        type: string
+    secrets:
+      GH_TOKEN:
+        required: true
+
+env:
+  REGISTRY: ghcr.io
+  GHCR_URI: ghcr.io/${{ github.repository }}
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Free up disk space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          # this might remove tools that are actually needed,
+          # if set to "true" but frees about 6 GB
+          tool-cache: true
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-24.05
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Nix build
+        run: |
+          chmod +x ./scripts/build_batch_${{ inputs.batch_number }}.sh
+          ./scripts/build_batch_${{ inputs.batch_number }}.sh
+
+      - name: Load images
+        run: |
+          chmod +x ./load_all.sh
+          ./load_all.sh
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set images for metadata
+        run: |
+          set -e
+
+          image_list=""
+
+          rce_images=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep '^rce/')
+
+          if [[ -z "${rce_images}" ]]; then
+            echo "No images found with the 'rce/' prefix."
+            exit 1
+          fi
+
+          for image in ${rce_images}; do
+            basename=$(basename "${image}" | cut -d':' -f1)
+
+            construct_uri="${{ env.GHCR_URI }}-${basename}"
+
+            image_list+="${construct_uri} "
+          done
+
+          echo "IMAGE_LIST=${image_list}" >> $GITHUB_ENV
+
+      - name: Set up metadata for the images
+        id: metadata
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_LIST }}
+          flavor: |
+            latest=true
+          tags: |
+            type=edge
+            type=sha
+
+      - name: Tag images
+        run: |
+          set -e
+
+          rce_images=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep '^rce/')
+
+          tags="${{ steps.metadata.outputs.tags }}"
+          tag_list=$(echo "${tags}" | tr '\n' ' ' | tr -d '\r')
+
+          for image in ${rce_images}; do
+            for tag in ${tag_list}; do
+              echo "Tagging ${image} with ${tag}..."
+              docker tag "${image}" "${tag}"
+            done
+          done
+
+          echo "TAG_LIST=${tag_list}" >> $GITHUB_ENV
+
+      - name: Push images
+        run: |
+          set -e
+
+          for tag_name in ${{ env.TAG_LIST }}; do
+            echo "Pushing ${tag_name}..."
+            docker push "${tag_name}"
+          done
