@@ -53,65 +53,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Set images for metadata
-      #   run: |
-      #     set -e
-
-      #     image_list=""
-
-      #     rce_images=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep '^rce/')
-
-      #     if [[ -z "${rce_images}" ]]; then
-      #       echo "No images found with the 'rce/' prefix."
-      #       exit 1
-      #     fi
-
-      #     for image in ${rce_images}; do
-      #       basename=$(basename "${image}" | cut -d':' -f1)
-
-      #       construct_uri="${{ env.GHCR_URI }}-${basename}"
-
-      #       image_list+="${construct_uri} "
-      #     done
-
-      #     echo "IMAGE_LIST=${image_list}" >> $GITHUB_ENV
-
-      # - name: Set up metadata for the images
-      #   id: metadata
-      #   uses: docker/metadata-action@v5
-      #   with:
-      #     images: ${{ env.IMAGE_LIST }}
-      #     flavor: |
-      #       latest=true
-      #     tags: |
-      #       type=edge
-      #       type=sha
-
-      # - name: Tag images
-      #   run: |
-      #     set -e
-
-      #     rce_images=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep '^rce/')
-
-      #     tags="${{ steps.metadata.outputs.tags }}"
-      #     tag_list=$(echo "${tags}" | tr '\n' ' ' | tr -d '\r')
-
-      #     for image in ${rce_images}; do
-      #       for tag in ${tag_list}; do
-      #         echo "Tagging ${image} with ${tag}..."
-      #         docker tag "${image}" "${tag}"
-      #       done
-      #     done
-
-      #     echo "TAG_LIST=${tag_list}" >> $GITHUB_ENV
-
       - name: Push images
         run: |
-          set -e
-
-          rce_images=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep '^ghcr.io/')
-
-          for image in ${rce_images}; do
-            echo "Pushing ${image}..."
-            docker push "${image}"
-          done
+          chmod +x ./scripts/push_all.sh
+          ./scripts/push_all.sh
