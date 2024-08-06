@@ -46,8 +46,8 @@ jobs:
 
       - name: Load images
         run: |
-          chmod +x ./load_all.sh
-          ./load_all.sh
+          chmod +x ./scripts/load_all.sh
+          ./scripts/load_all.sh
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
