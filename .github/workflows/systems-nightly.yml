@@ -29,7 +29,7 @@ jobs:
 
       - name: Nix build
         run: |
-          nix-build --out-link result/javascript images/javascript.nix
+          nix-build --out-link result/rce-images-javascript images/javascript.nix
 
       - name: Load image
         run: |
