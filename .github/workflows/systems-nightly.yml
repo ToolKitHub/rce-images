@@ -33,7 +33,7 @@ jobs:
 
       - name: Load image
         run: |
-          docker load -i result/javascript
+          docker load -i result/rce-images-javascript
 
       - name: Run test
         run: |
@@ -43,7 +43,7 @@ jobs:
               "name": "main.js",
               "content": "console.log(\"Hello World!\");"
             }]
-          }' | docker run --rm -i --read-only --tmpfs /tmp:rw,noexec,nosuid,size=65536k --tmpfs /home/rce:rw,exec,nosuid,uid=1000,gid=1000,size=131072k -u rce -w /home/rce rce/javascript:latest)
+          }' | docker run --rm -i --read-only --tmpfs /tmp:rw,noexec,nosuid,size=65536k --tmpfs /home/rce:rw,exec,nosuid,uid=1000,gid=1000,size=131072k -u rce -w /home/rce ghcr.io/toolkithub/rce-images-javascript:edge)
 
           echo "Output: ${output}"
 
