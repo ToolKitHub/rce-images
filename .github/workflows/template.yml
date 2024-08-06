@@ -7,9 +7,6 @@ on:
         description: The batch number for the build batch script
         required: true
         type: string
-    secrets:
-      GH_TOKEN:
-        required: true
 
 env:
   REGISTRY: ghcr.io
@@ -23,12 +20,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # - name: Free up disk space
-      #   uses: jlumbroso/free-disk-space@main
-      #   with:
-      #     # this might remove tools that are actually needed,
-      #     # if set to "true" but frees about 6 GB
-      #     tool-cache: true
+      - name: Free up disk space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          # this might remove tools that are actually needed,
+          # if set to "true" but frees about 6 GB
+          tool-cache: true
 
       - name: Checkout code
         uses: actions/checkout@v4
