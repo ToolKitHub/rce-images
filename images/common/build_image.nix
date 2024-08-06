@@ -21,7 +21,7 @@ let
 in
 pkgs.dockerTools.buildImage {
   name = name;
-  tag = latest;
+  tag = "edge";
   created = "now";
 
   contents =
