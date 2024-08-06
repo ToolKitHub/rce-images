@@ -54,7 +54,7 @@ pkgs.dockerTools.buildImage {
     Cmd = [ "${codeRunner}/bin/rce-runner" "--path" "/home/rce" ];
 
     Labels = {
-      "org.opencontainers.image.authors" = "ToolKitHub";
+      "org.opencontainers.image.authors" = "Success Kingsley <hello@xosnrdev.tech>";
       "org.opencontainers.image.source" = "https://github.com/ToolKitHub/rce-images";
       "org.opencontainers.image.version" = "edge";
       "org.opencontainers.image.description" = "RCE runtime image for running user code.";
