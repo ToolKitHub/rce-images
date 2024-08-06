@@ -3,9 +3,9 @@
 let
   rceRunnerSrc =
     builtins.fetchGit {
-      url = "https://github.com/xosnrdev/rce-runner.git";
-      ref = "master";
-      rev = "69af9115890728892815a1e12e37c685ed679bf3";
+      url = "https://github.com/ToolKitHub/rce-runner.git";
+      ref = "main";
+      rev = "24589db61342d77428af50b41221ca506c77d1f8";
     };
 
   rceRunner =
