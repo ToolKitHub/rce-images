@@ -2,6 +2,6 @@
 set -e
 
 mkdir -p result
-nix-build --out-link result/java images/java.nix
-nix-build --out-link result/javascript images/javascript.nix
-nix-build --out-link result/julia images/julia.nix
+nix-build --out-link result/rce-image-java images/java.nix
+nix-build --out-link result/rce-image-javascript images/javascript.nix
+nix-build --out-link result/rce-image-julia images/julia.nix

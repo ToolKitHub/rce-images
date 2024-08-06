@@ -2,6 +2,6 @@
 set -e
 
 mkdir -p result
-nix-build --out-link result/haskell images/haskell.nix
-nix-build --out-link result/idris images/idris.nix
-nix-build --out-link result/kotlin images/kotlin.nix
+nix-build --out-link result/rce-image-haskell images/haskell.nix
+nix-build --out-link result/rce-image-idris images/idris.nix
+nix-build --out-link result/rce-image-kotlin images/kotlin.nix

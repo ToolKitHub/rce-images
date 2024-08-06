@@ -2,6 +2,6 @@
 set -e
 
 mkdir -p result
-nix-build --out-link result/cobol images/cobol.nix
-nix-build --out-link result/coffeescript images/coffeescript.nix
-nix-build --out-link result/crystal images/crystal.nix
+nix-build --out-link result/rce-image-cobol images/cobol.nix
+nix-build --out-link result/rce-image-coffeescript images/coffeescript.nix
+nix-build --out-link result/rce-image-crystal images/crystal.nix
