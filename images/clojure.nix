@@ -10,8 +10,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/clojure";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/clojure";
+
   installedPackages = [
     pkgs.clojure
     pkgs.gnutar

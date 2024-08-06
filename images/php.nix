@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/php";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/php";
+
   installedPackages = [
     pkgs.php
   ];

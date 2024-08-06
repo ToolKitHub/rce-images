@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/csharp";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/csharp";
+
   installedPackages = [
     pkgs.mono
   ];

@@ -14,8 +14,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/swift";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/swift";
+
   installedPackages = [
     pkgs.binutils
     pkgs.swift

@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/raku";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/raku";
+
   installedPackages = [
     pkgs.rakudo
   ];

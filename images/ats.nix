@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/ats";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/ats";
+
   installedPackages = [
     pkgs.gcc
     pkgs.ats2

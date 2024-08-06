@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/ruby";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/ruby";
+
   installedPackages = [
     pkgs.ruby
   ];

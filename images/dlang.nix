@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/dlang";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/dlang";
+
   installedPackages = [
     pkgs.dmd
   ];

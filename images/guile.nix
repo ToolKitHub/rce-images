@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/guile";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/guile";
+
   installedPackages = [
     pkgs.guile
   ];

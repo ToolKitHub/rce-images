@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/perl";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/perl";
+
   installedPackages = [
     pkgs.perl
   ];

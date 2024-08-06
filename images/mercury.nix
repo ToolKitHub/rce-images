@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/mercury";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/mercury";
+
   installedPackages = [
     pkgs.mercury
   ];

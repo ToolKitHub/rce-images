@@ -1,6 +1,5 @@
 { pkgs
 , name
-, tag
 , installedPackages
 , run ? ""
 , env ? [ ]
@@ -22,7 +21,7 @@ let
 in
 pkgs.dockerTools.buildImage {
   name = name;
-  tag = tag;
+  tag = latest;
   created = "now";
 
   contents =

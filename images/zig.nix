@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/zig";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/zig";
+
   installedPackages = [
     pkgs.zig
   ];

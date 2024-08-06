@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/hare";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/hare";
+
   installedPackages = [
     pkgs.hare
   ];

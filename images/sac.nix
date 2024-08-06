@@ -17,8 +17,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/sac";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/sac";
+
   installedPackages = [
     pkgs.gcc
     pkgs.gnused

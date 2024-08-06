@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/erlang";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/erlang";
+
   installedPackages = [
     pkgs.erlang
   ];

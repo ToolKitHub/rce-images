@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/coffeescript";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/coffeescript";
+
   installedPackages = [
     pkgs.nodePackages.coffee-script
   ];

@@ -17,8 +17,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/python";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/python";
+
   installedPackages = [
     pythonPackages
   ];

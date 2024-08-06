@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/nim";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/nim";
+
   installedPackages = [
     pkgs.gcc
     pkgs.nim

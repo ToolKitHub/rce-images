@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/golang";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/golang";
+
   installedPackages = [
     pkgs.go
   ];

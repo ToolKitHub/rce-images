@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/bash";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/bash";
+
   installedPackages = [
     pkgs.procps
     pkgs.utillinux

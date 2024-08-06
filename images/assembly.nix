@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/assembly";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/assembly";
+
   installedPackages = [
     pkgs.binutils
     pkgs.nasm

@@ -13,8 +13,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/elm";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/elm";
+
   installedPackages = [
     pkgs.elmPackages.elm
     pkgs.nodejs

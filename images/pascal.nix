@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/pascal";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/pascal";
+
   installedPackages = [
     pkgs.binutils
     pkgs.fpc

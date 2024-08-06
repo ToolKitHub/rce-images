@@ -10,8 +10,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/javascript";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/javascript";
+
   installedPackages = [
     pkgs.nodejs
   ];

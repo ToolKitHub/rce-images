@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/clang";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/clang";
+
   installedPackages = [
     pkgs.clang
   ];

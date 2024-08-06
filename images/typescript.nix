@@ -7,8 +7,8 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "rce/typescript";
-  tag = "latest";
+  name = "ghcr.io/toolkithub/typescript";
+
   installedPackages = [
     pkgs.nodePackages.typescript
   ];
