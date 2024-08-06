@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/java";
+  name = "ghcr.io/toolkithub/rce-images-java";
 
   installedPackages = [
     pkgs.jdk

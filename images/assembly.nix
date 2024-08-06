@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/assembly";
+  name = "ghcr.io/toolkithub/rce-images-assembly";
 
   installedPackages = [
     pkgs.binutils

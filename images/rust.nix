@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rust";
+  name = "ghcr.io/toolkithub/rce-images-rust";
 
   installedPackages = [
     pkgs.binutils

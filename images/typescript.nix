@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/typescript";
+  name = "ghcr.io/toolkithub/rce-images-typescript";
 
   installedPackages = [
     pkgs.nodePackages.typescript

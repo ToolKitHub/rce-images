@@ -10,7 +10,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/clojure";
+  name = "ghcr.io/toolkithub/rce-images-clojure";
 
   installedPackages = [
     pkgs.clojure

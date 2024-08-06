@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/mercury";
+  name = "ghcr.io/toolkithub/rce-images-mercury";
 
   installedPackages = [
     pkgs.mercury

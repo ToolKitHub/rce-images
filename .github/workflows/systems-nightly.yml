@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - fixes
 
   workflow_dispatch:
 
@@ -26,146 +27,146 @@ jobs:
           nix_path: nixpkgs=channel:nixos-24.05
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-  #     - name: Nix build
-  #       run: |
-  #         nix-build --out-link result/javascript images/javascript.nix
+      - name: Nix build
+        run: |
+          nix-build --out-link result/rce-images-javascript images/javascript.nix
 
-  #     - name: Load image
-  #       run: |
-  #         docker load -i result/javascript
+      - name: Load image
+        run: |
+          docker load -i result/rce-images-javascript
 
-  #     - name: Run test
-  #       run: |
-  #         output=$(echo '{
-  #           "language": "javascript",
-  #           "files": [{
-  #             "name": "main.js",
-  #             "content": "console.log(\"Hello World!\");"
-  #           }]
-  #         }' | docker run --rm -i --read-only --tmpfs /tmp:rw,noexec,nosuid,size=65536k --tmpfs /home/rce:rw,exec,nosuid,uid=1000,gid=1000,size=131072k -u rce -w /home/rce rce/javascript:latest)
+      - name: Run test
+        run: |
+          output=$(echo '{
+            "language": "javascript",
+            "files": [{
+              "name": "main.js",
+              "content": "console.log(\"Hello World!\");"
+            }]
+          }' | docker run --rm -i --read-only --tmpfs /tmp:rw,noexec,nosuid,size=65536k --tmpfs /home/rce:rw,exec,nosuid,uid=1000,gid=1000,size=131072k -u rce -w /home/rce ghcr.io/toolkithub/rce-images-javascript:edge)
 
-  #         echo "Output: ${output}"
+          echo "Output: ${output}"
 
-  #         if [[ "${output}" == *"Hello World!"* ]]; then
-  #           echo "Test passed."
-  #         else
-  #           echo "Test failed."
-  #           exit 1
-  #         fi
+          if [[ "${output}" == *"Hello World!"* ]]; then
+            echo "Test passed."
+          else
+            echo "Test failed."
+            exit 1
+          fi
 
-  # paths-filter:
-  #   name: Paths Filter
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     images: ${{ steps.changes.outputs.images }}
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
+  paths-filter:
+    name: Paths Filter
+    runs-on: ubuntu-latest
+    outputs:
+      images: ${{ steps.changes.outputs.images }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     - name: Check for changes in paths
-  #       uses: dorny/paths-filter@v3
-  #       id: changes
-  #       with:
-  #         filters: |
-  #           images:
-  #             - 'images/**'
+      - name: Check for changes in paths
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            images:
+              - 'images/**'
 
   build_batch_1:
     name: Build Batch 1
-    # needs:
-    #   - test
-    #   - paths-filter
-    # if: ${{ needs.paths-filter.outputs.images == 'true' }}
+    needs:
+      - test
+      - paths-filter
+    if: ${{ needs.paths-filter.outputs.images == 'true' }}
     uses: ./.github/workflows/template.yml
     with:
       batch_number: 1
 
-  # build_batch_2:
-  #   name: Build Batch 2
-  #   needs:
-  #     - test
-  #     - paths-filter
-  #   if: ${{ needs.paths-filter.outputs.images == 'true' }}
-  #   uses: ./.github/workflows/template.yml
-  #   with:
-  #     batch_number: 2
+  build_batch_2:
+    name: Build Batch 2
+    needs:
+      - test
+      - paths-filter
+    if: ${{ needs.paths-filter.outputs.images == 'true' }}
+    uses: ./.github/workflows/template.yml
+    with:
+      batch_number: 2
 
-  # build_batch_3:
-  #   name: Build Batch 3
-  #   needs:
-  #     - test
-  #     - paths-filter
-  #   if: ${{ needs.paths-filter.outputs.images == 'true' }}
-  #   uses: ./.github/workflows/template.yml
-  #   with:
-  #     batch_number: 3
+  build_batch_3:
+    name: Build Batch 3
+    needs:
+      - test
+      - paths-filter
+    if: ${{ needs.paths-filter.outputs.images == 'true' }}
+    uses: ./.github/workflows/template.yml
+    with:
+      batch_number: 3
 
-  # build_batch_4:
-  #   name: Build Batch 4
-  #   needs:
-  #     - test
-  #     - paths-filter
-  #   if: ${{ needs.paths-filter.outputs.images == 'true' }}
-  #   uses: ./.github/workflows/template.yml
-  #   with:
-  #     batch_number: 4
+  build_batch_4:
+    name: Build Batch 4
+    needs:
+      - test
+      - paths-filter
+    if: ${{ needs.paths-filter.outputs.images == 'true' }}
+    uses: ./.github/workflows/template.yml
+    with:
+      batch_number: 4
 
-  # build_batch_5:
-  #   name: Build Batch 5
-  #   needs:
-  #     - test
-  #     - paths-filter
-  #   if: ${{ needs.paths-filter.outputs.images == 'true' }}
-  #   uses: ./.github/workflows/template.yml
-  #   with:
-  #     batch_number: 5
+  build_batch_5:
+    name: Build Batch 5
+    needs:
+      - test
+      - paths-filter
+    if: ${{ needs.paths-filter.outputs.images == 'true' }}
+    uses: ./.github/workflows/template.yml
+    with:
+      batch_number: 5
 
-  # build_batch_6:
-  #   name: Build Batch 6
-  #   needs:
-  #     - test
-  #     - paths-filter
-  #   if: ${{ needs.paths-filter.outputs.images == 'true' }}
-  #   uses: ./.github/workflows/template.yml
-  #   with:
-  #     batch_number: 6
+  build_batch_6:
+    name: Build Batch 6
+    needs:
+      - test
+      - paths-filter
+    if: ${{ needs.paths-filter.outputs.images == 'true' }}
+    uses: ./.github/workflows/template.yml
+    with:
+      batch_number: 6
 
-  # build_batch_7:
-  #   name: Build Batch 7
-  #   needs:
-  #     - test
-  #     - paths-filter
-  #   if: ${{ needs.paths-filter.outputs.images == 'true' }}
-  #   uses: ./.github/workflows/template.yml
-  #   with:
-  #     batch_number: 7
+  build_batch_7:
+    name: Build Batch 7
+    needs:
+      - test
+      - paths-filter
+    if: ${{ needs.paths-filter.outputs.images == 'true' }}
+    uses: ./.github/workflows/template.yml
+    with:
+      batch_number: 7
 
-  # build_batch_8:
-  #   name: Build Batch 8
-  #   needs:
-  #     - test
-  #     - paths-filter
-  #   if: ${{ needs.paths-filter.outputs.images == 'true' }}
-  #   uses: ./.github/workflows/template.yml
-  #   with:
-  #     batch_number: 8
+  build_batch_8:
+    name: Build Batch 8
+    needs:
+      - test
+      - paths-filter
+    if: ${{ needs.paths-filter.outputs.images == 'true' }}
+    uses: ./.github/workflows/template.yml
+    with:
+      batch_number: 8
 
-  # build_batch_9:
-  #   name: Build Batch 9
-  #   needs:
-  #     - test
-  #     - paths-filter
-  #   if: ${{ needs.paths-filter.outputs.images == 'true' }}
-  #   uses: ./.github/workflows/template.yml
-  #   with:
-  #     batch_number: 9
+  build_batch_9:
+    name: Build Batch 9
+    needs:
+      - test
+      - paths-filter
+    if: ${{ needs.paths-filter.outputs.images == 'true' }}
+    uses: ./.github/workflows/template.yml
+    with:
+      batch_number: 9
 
-  # build_batch_10:
-  #   name: Build Batch 10
-  #   needs:
-  #     - test
-  #     - paths-filter
-  #   if: ${{ needs.paths-filter.outputs.images == 'true' }}
-  #   uses: ./.github/workflows/template.yml
-  #   with:
-  #     batch_number: 10
+  build_batch_10:
+    name: Build Batch 10
+    needs:
+      - test
+      - paths-filter
+    if: ${{ needs.paths-filter.outputs.images == 'true' }}
+    uses: ./.github/workflows/template.yml
+    with:
+      batch_number: 10

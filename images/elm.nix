@@ -13,7 +13,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/elm";
+  name = "ghcr.io/toolkithub/rce-images-elm";
 
   installedPackages = [
     pkgs.elmPackages.elm

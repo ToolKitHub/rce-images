@@ -2,6 +2,6 @@
 set -e
 
 mkdir -p result
-nix-build --out-link result/rce-image-mercury images/mercury.nix
-nix-build --out-link result/rce-image-csharp images/csharp.nix
-nix-build --out-link result/rce-image-fsharp images/fsharp.nix
+nix-build --out-link result/rce-images-mercury images/mercury.nix
+nix-build --out-link result/rce-images-csharp images/csharp.nix
+nix-build --out-link result/rce-images-fsharp images/fsharp.nix

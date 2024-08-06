@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/perl";
+  name = "ghcr.io/toolkithub/rce-images-perl";
 
   installedPackages = [
     pkgs.perl
