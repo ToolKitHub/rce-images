@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-image-scala";
+  name = "ghcr.io/toolkithub/rce-images-scala";
 
   installedPackages = [
     pkgs.scala

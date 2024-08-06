@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-image-pascal";
+  name = "ghcr.io/toolkithub/rce-images-pascal";
 
   installedPackages = [
     pkgs.binutils

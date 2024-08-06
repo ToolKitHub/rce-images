@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-image-julia";
+  name = "ghcr.io/toolkithub/rce-images-julia";
 
   installedPackages = [
     pkgs.julia

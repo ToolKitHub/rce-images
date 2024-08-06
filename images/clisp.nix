@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-image-clisp";
+  name = "ghcr.io/toolkithub/rce-images-clisp";
 
   installedPackages = [
     pkgs.sbcl

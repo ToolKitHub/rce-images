@@ -17,7 +17,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-image-python";
+  name = "ghcr.io/toolkithub/rce-images-python";
 
   installedPackages = [
     pythonPackages

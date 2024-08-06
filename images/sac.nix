@@ -17,7 +17,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-image-sac";
+  name = "ghcr.io/toolkithub/rce-images-sac";
 
   installedPackages = [
     pkgs.gcc

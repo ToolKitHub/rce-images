@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-image-lua";
+  name = "ghcr.io/toolkithub/rce-images-lua";
 
   installedPackages = [
     pkgs.lua

@@ -10,7 +10,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-image-javascript";
+  name = "ghcr.io/toolkithub/rce-images-javascript";
 
   installedPackages = [
     pkgs.nodejs

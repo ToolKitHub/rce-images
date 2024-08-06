@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-image-csharp";
+  name = "ghcr.io/toolkithub/rce-images-csharp";
 
   installedPackages = [
     pkgs.mono

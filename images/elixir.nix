@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-image-elixir";
+  name = "ghcr.io/toolkithub/rce-images-elixir";
 
   installedPackages = [
     pkgs.elixir
