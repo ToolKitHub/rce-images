@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/golang";
+  name = "ghcr.io/toolkithub/rce-image-golang";
 
   installedPackages = [
     pkgs.go

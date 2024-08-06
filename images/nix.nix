@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/nix";
+  name = "ghcr.io/toolkithub/rce-image-nix";
 
   installedPackages = [
     pkgs.nix

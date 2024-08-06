@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/bash";
+  name = "ghcr.io/toolkithub/rce-image-bash";
 
   installedPackages = [
     pkgs.procps

@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/crystal";
+  name = "ghcr.io/toolkithub/rce-image-crystal";
 
   installedPackages = [
     pkgs.crystal

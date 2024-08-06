@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/cobol";
+  name = "ghcr.io/toolkithub/rce-image-cobol";
 
   installedPackages = [
     pkgs.gcc

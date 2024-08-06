@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/groovy";
+  name = "ghcr.io/toolkithub/rce-image-groovy";
 
   installedPackages = [
     pkgs.gawk

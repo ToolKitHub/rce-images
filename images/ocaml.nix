@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/ocaml";
+  name = "ghcr.io/toolkithub/rce-image-ocaml";
 
   installedPackages = [
     pkgs.ocaml

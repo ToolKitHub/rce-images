@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/kotlin";
+  name = "ghcr.io/toolkithub/rce-image-kotlin";
 
   installedPackages = [
     pkgs.kotlin

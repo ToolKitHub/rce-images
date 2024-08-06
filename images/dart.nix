@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/dart";
+  name = "ghcr.io/toolkithub/rce-image-dart";
 
   installedPackages = [
     pkgs.dart

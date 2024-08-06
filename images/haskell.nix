@@ -51,7 +51,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/haskell";
+  name = "ghcr.io/toolkithub/rce-image-haskell";
 
   installedPackages = [
     haskellPackages

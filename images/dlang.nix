@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/dlang";
+  name = "ghcr.io/toolkithub/rce-image-dlang";
 
   installedPackages = [
     pkgs.dmd

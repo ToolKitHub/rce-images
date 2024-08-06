@@ -7,7 +7,7 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/idris";
+  name = "ghcr.io/toolkithub/rce-image-idris";
 
   installedPackages = [
     pkgs.idris2
