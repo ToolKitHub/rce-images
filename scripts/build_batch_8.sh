@@ -2,6 +2,7 @@
 set -e
 
 mkdir -p result
-nix-build --out-link result/rce-images-dlang images/dlang.nix
-nix-build --out-link result/rce-images-erlang images/erlang.nix
-nix-build --out-link result/rce-images-golang images/golang.nix
+nix-build --out-link result/rce-images-nim images/nim.nix
+nix-build --out-link result/rce-images-nix images/nix.nix
+nix-build --out-link result/rce-images-ocaml images/ocaml.nix
+nix-build --out-link result/rce-images-pascal images/pascal.nix

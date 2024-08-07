@@ -2,6 +2,7 @@
 set -e
 
 mkdir -p result
-nix-build --out-link result/rce-images-java images/java.nix
-nix-build --out-link result/rce-images-javascript images/javascript.nix
-nix-build --out-link result/rce-images-julia images/julia.nix
+nix-build --out-link result/rce-images-golang images/golang.nix
+nix-build --out-link result/rce-images-groovy images/groovy.nix
+nix-build --out-link result/rce-images-guile images/guile.nix
+nix-build --out-link result/rce-images-hare images/hare.nix
