@@ -10,6 +10,6 @@ build_image {
   name = "ghcr.io/toolkithub/rce-images-c";
 
   installedPackages = [
-    pkgs.c
+    pkgs.clang
   ];
 }
