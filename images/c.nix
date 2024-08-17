@@ -7,9 +7,9 @@ let
 in
 build_image {
   pkgs = pkgs;
-  name = "ghcr.io/toolkithub/rce-images-clang";
+  name = "ghcr.io/toolkithub/rce-images-c";
 
   installedPackages = [
-    pkgs.clang
+    pkgs.c
   ];
 }
