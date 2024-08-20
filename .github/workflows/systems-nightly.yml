@@ -13,8 +13,8 @@ permissions:
   packages: write
 
 jobs:
-  test:
-    name: Test
+  build-test:
+    name: Build Test
     runs-on: ubuntu-latest
 
     steps:
@@ -25,15 +25,15 @@ jobs:
         uses: cachix/install-nix-action@v27
         with:
           nix_path: nixpkgs=channel:nixos-24.05
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          github_access_token: ${{ secrets.GH_TOKEN }}
 
       - name: Nix build
         run: |
-          nix-build --out-link result/rce-images-javascript images/javascript.nix
+          nix-build --out-link result/javascript images/languages/javascript.nix
 
       - name: Load image
         run: |
-          docker load -i result/rce-images-javascript
+          docker load -i result/javascript
 
       - name: Run test
         run: |
@@ -43,7 +43,7 @@ jobs:
               "name": "main.js",
               "content": "console.log(\"Hello World!\");"
             }]
-          }' | docker run --rm -i --read-only --tmpfs /tmp:rw,noexec,nosuid,size=65536k --tmpfs /home/rce:rw,exec,nosuid,uid=1000,gid=1000,size=131072k -u rce -w /home/rce ghcr.io/toolkithub/rce-images-javascript:edge)
+          }' | docker run --rm -i --read-only --tmpfs /tmp:rw,noexec,nosuid,size=65536k --tmpfs /home/rce:rw,exec,nosuid,uid=1000,gid=1000,size=131072k -u rce -w /home/rce toolkithub/javascript:edge)
 
           echo "Output: ${output}"
 
@@ -71,102 +71,47 @@ jobs:
             images:
               - 'images/**'
 
-  build_batch_1:
-    name: Build Batch 1
+  build-load-push:
+    name: Build Load and Push
     needs:
-      - test
+      - build-test
       - paths-filter
     if: ${{ needs.paths-filter.outputs.images == 'true' }}
-    uses: ./.github/workflows/template.yml
-    with:
-      batch_number: 1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Free up disk space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          # this might remove tools that are actually needed,
+          # if set to "true" but frees about 6 GB
+          tool-cache: true
 
-  build_batch_2:
-    name: Build Batch 2
-    needs:
-      - test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
-    uses: ./.github/workflows/template.yml
-    with:
-      batch_number: 2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  build_batch_3:
-    name: Build Batch 3
-    needs:
-      - test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
-    uses: ./.github/workflows/template.yml
-    with:
-      batch_number: 3
+      - name: Set up nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-24.05
+          github_access_token: ${{ secrets.GH_TOKEN }}
 
-  build_batch_4:
-    name: Build Batch 4
-    needs:
-      - test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
-    uses: ./.github/workflows/template.yml
-    with:
-      batch_number: 4
+      - name: Nix build
+        run: |
+          chmod +x ./scripts/build_all.sh
+          ./scripts/build_all.sh
 
-  build_batch_5:
-    name: Build Batch 5
-    needs:
-      - test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
-    uses: ./.github/workflows/template.yml
-    with:
-      batch_number: 5
+      - name: Load images
+        run: |
+          chmod +x ./scripts/load_all.sh
+          ./scripts/load_all.sh
 
-  build_batch_6:
-    name: Build Batch 6
-    needs:
-      - test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
-    uses: ./.github/workflows/template.yml
-    with:
-      batch_number: 6
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.DOCKER_HUB_PASSWD }}
 
-  build_batch_7:
-    name: Build Batch 7
-    needs:
-      - test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
-    uses: ./.github/workflows/template.yml
-    with:
-      batch_number: 7
-
-  build_batch_8:
-    name: Build Batch 8
-    needs:
-      - test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
-    uses: ./.github/workflows/template.yml
-    with:
-      batch_number: 8
-
-  build_batch_9:
-    name: Build Batch 9
-    needs:
-      - test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
-    uses: ./.github/workflows/template.yml
-    with:
-      batch_number: 9
-
-  build_batch_10:
-    name: Build Batch 10
-    needs:
-      - test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
-    uses: ./.github/workflows/template.yml
-    with:
-      batch_number: 10
+      - name: Push images
+        run: |
+          chmod +x ./scripts/push_all.sh
+          ./scripts/push_all.sh
