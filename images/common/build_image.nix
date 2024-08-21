@@ -7,7 +7,7 @@
 }:
 
 let
-  codeRunner =
+  rceRunner =
     import ./rce_runner.nix { pkgs = pkgs; };
 
   commonPackages = [
@@ -50,13 +50,13 @@ pkgs.dockerTools.buildImage {
         env
       ];
 
-    Cmd = [ "${codeRunner}/bin/rce-runner" "--path" "/home/rce" ];
+    Cmd = [ "${rceRunner}/bin/rce-runner" "--path" "/home/rce" ];
 
     Labels = {
       "org.opencontainers.image.authors" = "Success Kingsley <hello@xosnrdev.tech>";
       "org.opencontainers.image.source" = "https://github.com/ToolKitHub/rce-images";
       "org.opencontainers.image.version" = "edge";
-      "org.opencontainers.image.description" = "RCE runtime image for running user code.";
+      "org.opencontainers.image.description" = "RCE runtime environment for running user code.";
     };
   };
 }

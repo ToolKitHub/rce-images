@@ -1,0 +1,12 @@
+{
+  "name": "rce-node-modules",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.4",
+    "jest": "^29.7.0",
+    "lodash": "^4.17.21"
+  },
+  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
+}
