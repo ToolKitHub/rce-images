@@ -5,6 +5,9 @@ on:
     branches:
       - main
       - fixes
+    paths:
+      - "images/**"
+      - "scripts/**"
 
   workflow_dispatch:
 
@@ -54,29 +57,10 @@ jobs:
             exit 1
           fi
 
-  paths-filter:
-    name: Paths Filter
-    runs-on: ubuntu-latest
-    outputs:
-      images: ${{ steps.changes.outputs.images }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Check for changes in paths
-        uses: dorny/paths-filter@v3
-        id: changes
-        with:
-          filters: |
-            images:
-              - 'images/**'
-
   batch-1:
     name: Batch 1
     needs:
       - build-test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Free up disk space
@@ -120,8 +104,6 @@ jobs:
     name: Batch 2
     needs:
       - build-test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Free up disk space
@@ -165,8 +147,6 @@ jobs:
     name: Batch 3
     needs:
       - build-test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Free up disk space
@@ -210,8 +190,6 @@ jobs:
     name: Batch 4
     needs:
       - build-test
-      - paths-filter
-    if: ${{ needs.paths-filter.outputs.images == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Free up disk space
