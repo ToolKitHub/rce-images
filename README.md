@@ -1,15 +1,16 @@
 # rce-images
 
-[![Systems Nightly](https://github.com/ToolKitHub/rce-images/actions/workflows/systems-nightly.yml/badge.svg)](https://github.com/ToolKitHub/rce-images/actions/workflows/systems-nightly.yml)
-
-> Prebuilt images can be found on [Github](https://github.com/orgs/ToolKitHub/packages) or [Docker Hub](https://hub.docker.com/u/toolkithub).
+> [!IMPORTANT]  
+> Prebuilt images can be found on [Docker Hub](https://hub.docker.com/u/toolkithub).
 
 ## Overview
 
 This are runtime docker images used for running user code.
 The images are built using nix which are pinned to a specific nixpkgs commit to create reproducible images.
 
-> The [rce-runner](https://github.com/ToolKitHub/rce-runner) is installed in each image which writes the files inside the container, compiles and runs the code and returns the result as a json payload.
+### rce-runner
+
+The [rce-runner](https://github.com/ToolKitHub/rce-runner) is installed in each image which writes the files inside the container, compiles and runs the code and returns the result as a json payload.
 
 ### Usage
 
