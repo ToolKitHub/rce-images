@@ -1,0 +1,142 @@
+name: Systems Nightly
+
+on:
+  push:
+    branches: main
+    paths: src/**/*
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  NIX_CHANNEL: nixpkgs=channel:nixos-24.05
+  DOCKER_REGISTRY: docker.io
+
+jobs:
+  test:
+    name: Smoke Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@v27
+        with:
+          nix_path: ${{ env.NIX_CHANNEL }}
+          github_access_token: ${{ secrets.GH_TOKEN }}
+
+      - name: Test Build & Run
+        run: |
+          nix-build --out-link result/javascript src/language/javascript.nix
+          docker load -i result/javascript
+
+          cat << EOF | docker run --rm -i \
+            --read-only \
+            --tmpfs /tmp:rw,noexec,nosuid,size=65536k \
+            --tmpfs /home/rce:rw,exec,nosuid,uid=1000,gid=1000,size=131072k \
+            -u rce -w /home/rce \
+            toolkithub/javascript:edge
+          {
+            "language": "javascript",
+            "files": [{
+              "name": "main.js",
+              "content": "console.log(\"Hello World!\");"
+            }]
+          }
+          EOF
+
+          if ! docker logs $(docker ps -lq) 2>&1 | grep -q "Hello World!"; then
+            echo "Test failed: Expected 'Hello World!' in output"
+            exit 1
+          fi
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language:
+          [
+            assembly,
+            ats,
+            bash,
+            cobol,
+            coffeescript,
+            clang,
+            clisp,
+            clojure,
+            crystal,
+            dlang,
+            dart,
+            elixir,
+            elm,
+            erlang,
+            golang,
+            groovy,
+            guile,
+            hare,
+            haskell,
+            idris,
+            java,
+            javascript,
+            julia,
+            kotlin,
+            lua,
+            mercury,
+            csharp,
+            fsharp,
+            nim,
+            nix,
+            ocaml,
+            pascal,
+            perl,
+            php,
+            python,
+            raku,
+            ruby,
+            rust,
+            sac,
+            scala,
+            swift,
+            typescript,
+            zig,
+          ]
+      fail-fast: false
+      max-parallel: 10
+
+    name: Build Batch ${{ matrix.language }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+
+      - uses: cachix/install-nix-action@v27
+        with:
+          nix_path: ${{ env.NIX_CHANNEL }}
+          github_access_token: ${{ secrets.GH_TOKEN }}
+
+      - name: Build ${{ matrix.language }} Image
+        id: build
+        run: |
+          mkdir -p result
+          nix-build --out-link "result/${{ matrix.language }}" "src/languages/${{ matrix.language }}.nix"
+
+      - name: Load Image
+        run: docker load -i "result/${{ matrix.language }}"
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Push Image
+        run: |
+          image_name="${{ env.DOCKER_REGISTRY }}/toolkithub/${{ matrix.language }}:edge"
+          docker push $image_name
