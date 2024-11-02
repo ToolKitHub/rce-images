@@ -31,12 +31,13 @@ jobs:
           nix-build --out-link result/javascript src/languages/javascript.nix
           docker load -i result/javascript
 
-          cat << EOF | docker run --rm -i \
-            --read-only \
-            --tmpfs /tmp:rw,noexec,nosuid,size=65536k \
-            --tmpfs /home/rce:rw,exec,nosuid,uid=1000,gid=1000,size=131072k \
-            -u rce -w /home/rce \
-            toolkithub/javascript:edge
+          OUTPUT=$(
+            cat <<EOF | docker run --rm -i \
+              --read-only \
+              --tmpfs /tmp:rw,noexec,nosuid,size=65536k \
+              --tmpfs /home/rce:rw,exec,nosuid,uid=1000,gid=1000,size=131072k \
+              -u rce -w /home/rce \
+              toolkithub/javascript:edge
           {
             "language": "javascript",
             "files": [{
@@ -45,9 +46,9 @@ jobs:
             }]
           }
           EOF
+          )
 
-          if ! docker logs $(docker ps -lq) 2>&1 | grep -q "Hello World!\n"; then
-            echo "Test failed: Expected 'Hello World!\n' in output"
+          if [[ "$OUTPUT" != *"Hello World!"* ]]; then
             exit 1
           fi
 
@@ -106,7 +107,6 @@ jobs:
       max-parallel: 10
 
     name: Build Batch ${{ matrix.language }}
-
     steps:
       - uses: actions/checkout@v4
 
