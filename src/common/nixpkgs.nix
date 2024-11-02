@@ -3,7 +3,7 @@ let
     builtins.fetchGit {
       url = "https://github.com/NixOS/nixpkgs";
       ref = "refs/heads/release-24.05";
-      rev = "abd29679271a9fbcffe1dd640fc6c2a77957f5ed";
+      rev = "4df2561800d1fb1be56d9d71cddb9a1079b688c2";
     };
 
   pkgs =
