@@ -46,8 +46,8 @@ jobs:
           }
           EOF
 
-          if ! docker logs $(docker ps -lq) 2>&1 | grep -q "Hello World!"; then
-            echo "Test failed: Expected 'Hello World!' in output"
+          if ! docker logs $(docker ps -lq) 2>&1 | grep -q "Hello World!\n"; then
+            echo "Test failed: Expected 'Hello World!\n' in output"
             exit 1
           fi
 
