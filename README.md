@@ -1,7 +1,7 @@
 # rce-images
 
 > [!IMPORTANT]  
-> Prebuilt images can be found on [Docker Hub](https://hub.docker.com/u/toolkithub).
+> Prebuilt images can be found on [Docker Hub](https://hub.docker.com/u/toolkithub)
 
 ## Overview
 
