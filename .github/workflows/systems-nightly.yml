@@ -28,7 +28,7 @@ jobs:
 
       - name: Test Build & Run
         run: |
-          nix-build --out-link result/javascript src/language/javascript.nix
+          nix-build --out-link result/javascript src/languages/javascript.nix
           docker load -i result/javascript
 
           cat << EOF | docker run --rm -i \
