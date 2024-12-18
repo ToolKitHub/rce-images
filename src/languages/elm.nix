@@ -1,15 +1,11 @@
 let
-  pkgs =
-    import ../common/nixpkgs.nix;
+  pkgs = import ../common/nixpkgs.nix;
 
-  build_image =
-    import ../common/build_image.nix;
+  build_image = import ../common/build_image.nix;
 
-  elmRunner =
-    import ./elm/elm-runner/default.nix { pkgs = pkgs; };
+  elmRunner = import ./elm/elm-runner/default.nix { pkgs = pkgs; };
 
-  bootstrap =
-    import ./elm/bootstrap.nix { pkgs = pkgs; };
+  bootstrap = import ./elm/bootstrap.nix { pkgs = pkgs; };
 in
 build_image {
   pkgs = pkgs;

@@ -1,12 +1,9 @@
 let
-  pkgs =
-    import ../common/nixpkgs.nix;
+  pkgs = import ../common/nixpkgs.nix;
 
-  build_image =
-    import ../common/build_image.nix;
+  build_image = import ../common/build_image.nix;
 
-  rceNodeModules =
-    import ./javascript/rce-node-modules/default.nix { pkgs = pkgs; };
+  rceNodeModules = import ./javascript/rce-node-modules/default.nix { pkgs = pkgs; };
 in
 build_image {
   pkgs = pkgs;
