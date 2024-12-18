@@ -5,7 +5,7 @@ let
     builtins.fetchGit {
       url = "https://github.com/ToolKitHub/rce-runner.git";
       ref = "main";
-      rev = "f608c0beb530a57f935c1827c098b5a59c533ee0";
+      rev = "43af3e01c2d76146d81c816d7c3623d5518b9ea8";
     };
 
   rceRunner =
