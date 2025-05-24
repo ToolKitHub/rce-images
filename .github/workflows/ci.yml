@@ -1,0 +1,94 @@
+name: CI
+on:
+  push:
+    branches: main
+    paths: src/**/*
+  workflow_dispatch:
+
+env:
+  DOCKER_REGISTRY: docker.io
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language:
+          [
+            assembly,
+            ats,
+            bash,
+            cobol,
+            coffeescript,
+            clang,
+            clisp,
+            clojure,
+            crystal,
+            dlang,
+            dart,
+            elixir,
+            elm,
+            erlang,
+            golang,
+            groovy,
+            guile,
+            hare,
+            haskell,
+            idris,
+            java,
+            javascript,
+            julia,
+            kotlin,
+            lua,
+            mercury,
+            csharp,
+            fsharp,
+            nim,
+            nix,
+            ocaml,
+            pascal,
+            perl,
+            php,
+            python,
+            raku,
+            ruby,
+            rust,
+            sac,
+            scala,
+            swift,
+            typescript,
+            zig,
+          ]
+      fail-fast: false
+      max-parallel: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Building ${{ matrix.language }} image
+        id: build
+        run: |
+          mkdir -p result
+          nix-build --out-link result/${{ matrix.language }} src/languages/${{ matrix.language }}.nix
+
+      - name: Loading ${{ matrix.language }} image
+        run: docker load -i result/${{ matrix.language }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Push ${{ matrix.language }} image
+        run: |
+          image_name="${{ env.DOCKER_REGISTRY }}/toolkithub/${{ matrix.language }}:latest"
+          docker push $image_name
