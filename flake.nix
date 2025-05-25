@@ -1,5 +1,5 @@
 {
-  description = "Language-specific Docker images for remote code execution";
+  description = "Remote Code Execution Docker images";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -13,7 +13,13 @@
       let
         pkgs = import nixpkgs { inherit system; };
 
-        devShell = pkgs.mkShell { buildInputs = [ pkgs.yarn2nix ]; };
+        devShell = pkgs.mkShell {
+          buildInputs = [
+            pkgs.yarn2nix
+            pkgs.nodejs
+            pkgs.yarn
+          ];
+        };
 
       in
       {
