@@ -47,7 +47,7 @@ let
   ]);
 in
 build_image {
-  pkgs = pkgs;
+  inherit pkgs;
   name = "toolkithub/haskell";
 
   installedPackages = [ haskellPackages ];

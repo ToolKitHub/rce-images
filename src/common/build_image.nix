@@ -8,7 +8,7 @@
 }:
 
 let
-  rceRunner = import ./rce_runner.nix { pkgs = pkgs; };
+  rceRunner = import ./rce_runner.nix { inherit pkgs; };
 
   commonPackages = [
     pkgs.bash
