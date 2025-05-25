@@ -1,4 +1,4 @@
-# RCE Images
+# rce-images
 
 Remote Code Execution Docker images for 40+ programming languages built with Nix.
 
@@ -12,7 +12,7 @@ This repository contains Nix definitions to build Docker images for executing co
 
 - Is built reproducibly using Nix
 - Contains a language-specific environment with common libraries
-- Includes the [RCE Runner](https://github.com/ToolKitHub/rce-runner) to handle code execution
+- Includes the [rce-runner](https://github.com/ToolKitHub/rce-runner) to handle code execution
 - Returns execution results in a standardized JSON format
 
 ## Usage
@@ -72,4 +72,4 @@ nix develop
 
 ## License
 
-See [LICENSE](LICENSE)
+See [License](LICENSE)
