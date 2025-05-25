@@ -7,9 +7,7 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/coffeescript";
 
-  installedPackages = [
-    pkgs.nodePackages.coffee-script
-  ];
+  installedPackages = [ pkgs.nodePackages.coffee-script ];
   env = [
     "PATH=${pkgs.nodePackages.coffee-script}/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   ];

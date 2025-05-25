@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/csharp";
 
-  installedPackages = [
-    pkgs.mono
-  ];
+  installedPackages = [ pkgs.mono ];
 }

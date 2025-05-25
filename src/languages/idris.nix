@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/idris";
 
-  installedPackages = [
-    pkgs.idris2
-  ];
+  installedPackages = [ pkgs.idris2 ];
 }

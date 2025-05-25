@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/scala";
 
-  installedPackages = [
-    pkgs.scala
-  ];
+  installedPackages = [ pkgs.scala ];
 }

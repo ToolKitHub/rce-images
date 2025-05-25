@@ -11,7 +11,5 @@ build_image {
     pkgs.mono
     pkgs.fsharp
   ];
-  env = [
-    "MONO_PATH=${pkgs.fsharp}/lib/mono/4.5/"
-  ];
+  env = [ "MONO_PATH=${pkgs.fsharp}/lib/mono/4.5/" ];
 }

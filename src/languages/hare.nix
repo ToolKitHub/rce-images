@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/hare";
 
-  installedPackages = [
-    pkgs.hare
-  ];
+  installedPackages = [ pkgs.hare ];
 }

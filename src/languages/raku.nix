@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/raku";
 
-  installedPackages = [
-    pkgs.rakudo
-  ];
+  installedPackages = [ pkgs.rakudo ];
 }

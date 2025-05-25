@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/dlang";
 
-  installedPackages = [
-    pkgs.dmd
-  ];
+  installedPackages = [ pkgs.dmd ];
 }

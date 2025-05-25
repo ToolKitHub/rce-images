@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/kotlin";
 
-  installedPackages = [
-    pkgs.kotlin
-  ];
+  installedPackages = [ pkgs.kotlin ];
 }

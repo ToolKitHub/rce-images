@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/ocaml";
 
-  installedPackages = [
-    pkgs.ocaml
-  ];
+  installedPackages = [ pkgs.ocaml ];
 }

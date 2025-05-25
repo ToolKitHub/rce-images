@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/julia";
 
-  installedPackages = [
-    pkgs.julia
-  ];
+  installedPackages = [ pkgs.julia ];
 }

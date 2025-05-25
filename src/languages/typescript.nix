@@ -7,9 +7,7 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/typescript";
 
-  installedPackages = [
-    pkgs.nodePackages.typescript
-  ];
+  installedPackages = [ pkgs.nodePackages.typescript ];
   env = [
     "PATH=${pkgs.nodePackages.typescript}/bin/:${pkgs.nodejs}/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   ];

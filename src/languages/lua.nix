@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/lua";
 
-  installedPackages = [
-    pkgs.lua
-  ];
+  installedPackages = [ pkgs.lua ];
 }

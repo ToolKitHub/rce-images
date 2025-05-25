@@ -16,7 +16,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/python";
 
-  installedPackages = [
-    pythonPackages
-  ];
+  installedPackages = [ pythonPackages ];
 }

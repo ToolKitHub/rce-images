@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/dart";
 
-  installedPackages = [
-    pkgs.dart
-  ];
+  installedPackages = [ pkgs.dart ];
 }

@@ -9,9 +9,7 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/javascript";
 
-  installedPackages = [
-    pkgs.nodejs
-  ];
+  installedPackages = [ pkgs.nodejs ];
   env = [
     "PATH=${pkgs.nodejs}/bin/:${rceNodeModules}/libexec/rce-node-modules/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     "NODE_PATH=${rceNodeModules}/libexec/rce-node-modules/node_modules"

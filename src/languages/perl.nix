@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/perl";
 
-  installedPackages = [
-    pkgs.perl
-  ];
+  installedPackages = [ pkgs.perl ];
 }

@@ -7,8 +7,6 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/mercury";
 
-  installedPackages = [
-    pkgs.mercury
-  ];
+  installedPackages = [ pkgs.mercury ];
   keepContentsDirlinks = true;
 }

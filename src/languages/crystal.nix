@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/crystal";
 
-  installedPackages = [
-    pkgs.crystal
-  ];
+  installedPackages = [ pkgs.crystal ];
 }

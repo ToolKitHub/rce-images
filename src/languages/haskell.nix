@@ -50,7 +50,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/haskell";
 
-  installedPackages = [
-    haskellPackages
-  ];
+  installedPackages = [ haskellPackages ];
 }

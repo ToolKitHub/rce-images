@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/clang";
 
-  installedPackages = [
-    pkgs.clang
-  ];
+  installedPackages = [ pkgs.clang ];
 }

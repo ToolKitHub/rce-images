@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/php";
 
-  installedPackages = [
-    pkgs.php
-  ];
+  installedPackages = [ pkgs.php ];
 }

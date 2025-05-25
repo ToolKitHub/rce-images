@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/erlang";
 
-  installedPackages = [
-    pkgs.erlang
-  ];
+  installedPackages = [ pkgs.erlang ];
 }

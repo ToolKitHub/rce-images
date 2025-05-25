@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/golang";
 
-  installedPackages = [
-    pkgs.go
-  ];
+  installedPackages = [ pkgs.go ];
 }

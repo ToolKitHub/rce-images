@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/elixir";
 
-  installedPackages = [
-    pkgs.elixir
-  ];
+  installedPackages = [ pkgs.elixir ];
 }

@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/ruby";
 
-  installedPackages = [
-    pkgs.ruby
-  ];
+  installedPackages = [ pkgs.ruby ];
 }

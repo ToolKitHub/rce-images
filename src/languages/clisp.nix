@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/clisp";
 
-  installedPackages = [
-    pkgs.sbcl
-  ];
+  installedPackages = [ pkgs.sbcl ];
 }

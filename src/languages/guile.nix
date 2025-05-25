@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/guile";
 
-  installedPackages = [
-    pkgs.guile
-  ];
+  installedPackages = [ pkgs.guile ];
 }

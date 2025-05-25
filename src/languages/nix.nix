@@ -7,9 +7,7 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/nix";
 
-  installedPackages = [
-    pkgs.nix
-  ];
+  installedPackages = [ pkgs.nix ];
   env = [
     "NIX_STATE_DIR=/tmp"
     "NIX_STORE_DIR=/tmp"

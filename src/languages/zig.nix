@@ -7,7 +7,5 @@ build_image {
   pkgs = pkgs;
   name = "toolkithub/zig";
 
-  installedPackages = [
-    pkgs.zig
-  ];
+  installedPackages = [ pkgs.zig ];
 }
