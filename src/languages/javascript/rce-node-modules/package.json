@@ -1,0 +1,12 @@
+{
+  "name": "rce-node-modules",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "dayjs": "^1.11.13",
+    "heap-js": "^2.6.0",
+    "lodash": "^4.17.21"
+  }
+}
