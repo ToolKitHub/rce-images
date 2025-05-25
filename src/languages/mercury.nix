@@ -4,11 +4,9 @@ let
   build_image = import ../common/build_image.nix;
 in
 build_image {
-  pkgs = pkgs;
+  inherit pkgs;
   name = "toolkithub/mercury";
 
-  installedPackages = [
-    pkgs.mercury
-  ];
+  installedPackages = [ pkgs.mercury ];
   keepContentsDirlinks = true;
 }

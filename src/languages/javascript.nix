@@ -3,7 +3,7 @@ let
 
   build_image = import ../common/build_image.nix;
 
-  rceNodeModules = import ./javascript/rce-node-modules/default.nix { pkgs = pkgs; };
+  rceNodeModules = import ./javascript/rce-node-modules/default.nix { inherit pkgs; };
 in
 build_image {
   pkgs = pkgs;

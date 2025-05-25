@@ -1,10 +1,12 @@
 {
   "name": "rce-node-modules",
   "version": "1.0.0",
-  "main": "main.js",
-  "author": "Success Kingsley <hello@xosnrdev.tech>",
-  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447",
+  "main": "index.js",
+  "license": "MIT",
   "dependencies": {
-    "node-fetch": "3.3.2"
+    "axios": "^1.9.0",
+    "dayjs": "^1.11.13",
+    "heap-js": "^2.6.0",
+    "lodash": "^4.17.21"
   }
 }
