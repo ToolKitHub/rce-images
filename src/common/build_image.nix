@@ -15,13 +15,11 @@ let
     pkgs.coreutils
   ];
 
-  commonEnv = [
-    "LANG=C.UTF-8"
-  ];
+  commonEnv = [ "LANG=C.UTF-8" ];
 in
 pkgs.dockerTools.buildImage {
   name = name;
-  tag = "edge";
+  tag = "latest";
   created = "now";
 
   contents = pkgs.lib.concatLists [
@@ -55,11 +53,8 @@ pkgs.dockerTools.buildImage {
     ];
 
     Labels = {
-      "org.opencontainers.image.authors" = "Success Kingsley <hello@xosnrdev.tech>";
+      "org.opencontainers.image.authors" = "ToolKitHub";
       "org.opencontainers.image.source" = "https://github.com/ToolKitHub/rce-images";
-      "org.opencontainers.image.version" = "edge";
-      "org.opencontainers.image.description" =
-        "Language-specific Docker images for remote code execution.";
     };
   };
 }

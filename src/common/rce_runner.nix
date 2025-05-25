@@ -3,10 +3,9 @@
 let
   rceRunnerSrc = builtins.fetchGit {
     url = "https://github.com/ToolKitHub/rce-runner.git";
-    ref = "main";
-    rev = "b946780a89b81f01c688eb7a5a161dab1095a287";
+    ref = "refs/tags/1.2.4";
   };
 
-  rceRunner = import "${rceRunnerSrc}/Cargo.nix" { pkgs = pkgs; };
+  rceRunner = import "${rceRunnerSrc}/Cargo.nix" { inherit pkgs; };
 in
 rceRunner.rootCrate.build
