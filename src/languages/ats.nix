@@ -10,11 +10,7 @@ let
   # - They only impact documentation generation which we don't need for this image
   custom_ats2 = pkgs.ats2.overrideAttrs (oldAttrs: {
     # Disable the check for broken symlinks during build
-    postFixup =
-      (oldAttrs.postFixup or "")
-      + ''
-        # Intentionally empty to override any symlink checks that would otherwise fail the build
-      '';
+    dontCheck = true;
   });
 in
 build_image {
