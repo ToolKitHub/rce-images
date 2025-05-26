@@ -72,13 +72,13 @@ jobs:
 
       - uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Building ${{ matrix.language }} image
+      - name: Build image
         id: build
         run: |
           mkdir -p result
           nix-build --out-link result/${{ matrix.language }} src/languages/${{ matrix.language }}.nix
 
-      - name: Loading ${{ matrix.language }} image
+      - name: Load image
         run: docker load -i result/${{ matrix.language }}
 
       - name: Login to Docker Hub
@@ -88,7 +88,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
-      - name: Push ${{ matrix.language }} image
+      - name: Push image
         run: |
           image_name="${{ env.DOCKER_REGISTRY }}/toolkithub/${{ matrix.language }}:latest"
           docker push $image_name

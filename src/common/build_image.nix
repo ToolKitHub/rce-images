@@ -22,10 +22,13 @@ pkgs.dockerTools.buildImage {
   tag = "latest";
   created = "now";
 
-  contents = pkgs.lib.concatLists [
-    commonPackages
-    installedPackages
-  ];
+  copyToRoot = pkgs.buildEnv {
+    name = "root";
+    paths = pkgs.lib.concatLists [
+      commonPackages
+      installedPackages
+    ];
+  };
 
   diskSize = 8192;
   keepContentsDirlinks = keepContentsDirlinks;
@@ -51,10 +54,5 @@ pkgs.dockerTools.buildImage {
       "--path"
       "/home/rce"
     ];
-
-    Labels = {
-      "org.opencontainers.image.authors" = "ToolKitHub";
-      "org.opencontainers.image.source" = "https://github.com/ToolKitHub/rce-images";
-    };
   };
 }
