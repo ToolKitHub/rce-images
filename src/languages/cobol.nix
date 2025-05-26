@@ -9,6 +9,6 @@ build_image {
 
   installedPackages = [
     pkgs.gcc
-    pkgs.gnu-cobol
+    pkgs.gnucobol
   ];
 }
