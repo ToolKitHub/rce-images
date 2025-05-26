@@ -5,7 +5,6 @@ let
 
   pythonPackages = pkgs.python3.withPackages (ps: [
     ps.cachetools
-    ps.nose
     ps.numpy
     ps.python-dateutil
     ps.pytz

@@ -4,7 +4,7 @@ let
   nix-sac = builtins.fetchGit {
     url = "https://github.com/cxandru/sac-nix";
     ref = "refs/heads/main";
-    rev = "b5c84342906aef3373d9a6e8b6b6933e1c4ea426";
+    rev = "8b96317ab10b77a47852187b0ea7cc2c09316ba6";
   };
 
   sacpkgs = import nix-sac;

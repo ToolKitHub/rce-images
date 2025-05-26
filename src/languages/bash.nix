@@ -17,7 +17,7 @@ build_image {
     pkgs.gawk
     pkgs.gzip
     pkgs.unzip
-    pkgs.lzma
+    pkgs.xz
     pkgs.gnutar
     pkgs.bzip2
     pkgs.findutils
