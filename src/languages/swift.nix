@@ -1,11 +1,5 @@
 let
-  nixpkgs = builtins.fetchGit {
-    url = "https://github.com/NixOS/nixpkgs";
-    ref = "refs/heads/release-22.11";
-    rev = "0218941ea68b4c625533bead7bbb94ccce52dceb";
-  };
-
-  pkgs = import nixpkgs { };
+  pkgs = import ../common/nixpkgs.nix;
 
   build_image = import ../common/build_image.nix;
 in
