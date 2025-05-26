@@ -8,7 +8,7 @@ let
   bootstrap = import ./elm/bootstrap.nix { inherit pkgs; };
 in
 build_image {
-  inherit pkgs;
+  pkgs = pkgs;
   name = "toolkithub/elm";
 
   installedPackages = [

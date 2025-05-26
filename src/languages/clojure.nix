@@ -6,7 +6,7 @@ let
   bootstrap = import ./clojure/bootstrap.nix { inherit pkgs; };
 in
 build_image {
-  inherit pkgs;
+  pkgs = pkgs;
   name = "toolkithub/clojure";
 
   installedPackages = [

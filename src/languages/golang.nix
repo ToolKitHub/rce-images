@@ -4,7 +4,7 @@ let
   build_image = import ../common/build_image.nix;
 in
 build_image {
-  inherit pkgs;
+  pkgs = pkgs;
   name = "toolkithub/golang";
 
   installedPackages = [ pkgs.go ];
