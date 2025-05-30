@@ -3,12 +3,10 @@ let
 
   build_image = import ../common/build_image.nix;
 
-  ats2 = pkgs.ats2.overrideAttrs (old: {
-    postFixup = ''
-      # Remove broken DOCUGEN symlinks to avoid noBrokenSymlinks errors
-      find $out -type l -xtype l -delete
-    '';
-  });
+  ats2 = pkgs.ats2.override {
+    withContrib = false;
+    withEmacsSupport = false;
+  };
 
 in
 build_image {
