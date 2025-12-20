@@ -6,5 +6,5 @@ in build_image {
   pkgs = pkgs;
   name = "swift";
 
-  installedPackages = [ pkgs.binutils pkgs.gcc pkgs.swift ];
+  installedPackages = [ pkgs.binutils pkgs.clang pkgs.swift ];
 }
