@@ -3,18 +3,11 @@ let
 
   build_image = import ../common/build_image.nix;
 
-  gnucobol = pkgs.gnucobol.overrideAttrs (old: {
-    installFlags = [
-      "localedir=$out/share/locale"
-    ];
-  });
-in
-build_image {
+  gnucobol = pkgs.gnucobol.overrideAttrs
+    (old: { installFlags = [ "localedir=$out/share/locale" ]; });
+in build_image {
   pkgs = pkgs;
-  name = "toolkithub/cobol";
+  name = "cobol";
 
-  installedPackages = [
-    pkgs.gcc
-    gnucobol
-  ];
+  installedPackages = [ pkgs.gcc gnucobol ];
 }

@@ -8,13 +8,9 @@ let
     withEmacsSupport = false;
   };
 
-in
-build_image {
+in build_image {
   pkgs = pkgs;
-  name = "toolkithub/ats";
+  name = "ats";
 
-  installedPackages = [
-    pkgs.gcc
-    ats2
-  ];
+  installedPackages = [ pkgs.gcc ats2 ];
 }

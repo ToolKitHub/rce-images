@@ -6,5 +6,4 @@ let
     mkdir -p $out
     cp ${src}/bootstrap.tar.gz $out/
   '';
-in
-pkgs.runCommand "rce-elm-bootstrap" { } cmd
+in pkgs.runCommand "rce-elm-bootstrap" { } cmd

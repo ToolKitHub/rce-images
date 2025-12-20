@@ -5,5 +5,4 @@ let
   };
 
   pkgs = import nixpkgs { };
-in
-pkgs
+in pkgs

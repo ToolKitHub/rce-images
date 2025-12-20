@@ -45,10 +45,9 @@ let
     ps.xhtml
     ps.zlib
   ]);
-in
-build_image {
+in build_image {
   pkgs = pkgs;
-  name = "toolkithub/haskell";
+  name = "haskell";
 
   installedPackages = [ haskellPackages ];
 }
