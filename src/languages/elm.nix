@@ -6,18 +6,12 @@ let
   elmRunner = import ./elm/elm-runner/default.nix { inherit pkgs; };
 
   bootstrap = import ./elm/bootstrap.nix { inherit pkgs; };
-in
-build_image {
+in build_image {
   pkgs = pkgs;
-  name = "toolkithub/elm";
+  name = "elm";
 
-  installedPackages = [
-    pkgs.elmPackages.elm
-    pkgs.nodejs
-    pkgs.gnutar
-    pkgs.gzip
-    elmRunner
-  ];
+  installedPackages =
+    [ pkgs.elmPackages.elm pkgs.nodejs pkgs.gnutar pkgs.gzip elmRunner ];
   run = ''
     # Prepare bootstrap file
     cp ${bootstrap}/bootstrap.tar.gz /

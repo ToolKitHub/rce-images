@@ -4,16 +4,11 @@ let
   build_image = import ../common/build_image.nix;
 
   bootstrap = import ./clojure/bootstrap.nix { inherit pkgs; };
-in
-build_image {
+in build_image {
   pkgs = pkgs;
-  name = "toolkithub/clojure";
+  name = "clojure";
 
-  installedPackages = [
-    pkgs.clojure
-    pkgs.gnutar
-    pkgs.gzip
-  ];
+  installedPackages = [ pkgs.clojure pkgs.gnutar pkgs.gzip ];
   run = ''
     # Prepare bootstrap file
     cp ${bootstrap}/bootstrap.tar.gz /

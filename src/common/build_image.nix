@@ -1,33 +1,20 @@
-{
-  pkgs,
-  name,
-  installedPackages,
-  run ? "",
-  env ? [ ],
-  keepContentsDirlinks ? false,
-}:
+{ pkgs, name, installedPackages, run ? "", env ? [ ]
+, keepContentsDirlinks ? false, }:
 
 let
   rceRunner = import ./rce_runner.nix { inherit pkgs; };
 
-  commonPackages = [
-    pkgs.bash
-    pkgs.coreutils
-  ];
+  commonPackages = [ pkgs.bash pkgs.coreutils ];
 
   commonEnv = [ "LANG=C.UTF-8" ];
-in
-pkgs.dockerTools.buildImage {
-  name = name;
+in pkgs.dockerTools.buildImage {
+  name = "toolkithub/" + name;
   tag = "latest";
   created = "now";
 
   copyToRoot = pkgs.buildEnv {
     name = "root";
-    paths = pkgs.lib.concatLists [
-      commonPackages
-      installedPackages
-    ];
+    paths = pkgs.lib.concatLists [ commonPackages installedPackages ];
   };
 
   diskSize = 8192;
@@ -44,15 +31,8 @@ pkgs.dockerTools.buildImage {
   '';
 
   config = {
-    Env = pkgs.lib.concatLists [
-      commonEnv
-      env
-    ];
+    Env = pkgs.lib.concatLists [ commonEnv env ];
 
-    Cmd = [
-      "${rceRunner}/bin/rce-runner"
-      "--path"
-      "/home/rce"
-    ];
+    Cmd = [ "${rceRunner}/bin/rce-runner" "--path" "/home/rce" ];
   };
 }
